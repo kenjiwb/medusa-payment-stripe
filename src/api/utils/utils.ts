@@ -60,16 +60,18 @@ export async function handlePaymentHook({
       resource_id?: string;
       charge_type: "Online";
       order_id: "JPBSSTORE";
+      on_behalf_of: "TEST";
     };
     last_payment_error?: { message: string };
   };
 }): Promise<{ statusCode: number }> {
   const logger = container.resolve("logger");
-
+  console.log("paymentIntent in dist (utils): ", paymentIntent);
   const cartId =
     paymentIntent.metadata.cart_id ?? paymentIntent.metadata.resource_id; // Backward compatibility
   const resourceId = paymentIntent.metadata.resource_id;
-
+  const charge_type = paymentIntent.metadata.charge_type;
+  const order_id = paymentIntent.metadata.order_id;
   switch (event.type) {
     case "payment_intent.succeeded":
       try {
@@ -78,6 +80,8 @@ export async function handlePaymentHook({
           paymentIntent,
           cartId,
           resourceId,
+          charge_type,
+          order_id,
           isPaymentCollection: isPaymentCollection(resourceId),
           container,
         });
@@ -123,6 +127,8 @@ async function onPaymentIntentSucceeded({
   paymentIntent,
   cartId,
   resourceId,
+  charge_type,
+  order_id,
   isPaymentCollection,
   container,
 }) {

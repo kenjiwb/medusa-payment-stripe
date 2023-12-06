@@ -1,17 +1,16 @@
 {
-  "name": "medusa-payment-stripe",
-  "version": "6.0.6",
+  "name": "medusa-payment-stripe-kj",
+  "version": "1.0.2",
   "description": "Stripe Payment provider for Medusa Commerce",
   "main": "dist/index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/medusajs/medusa",
-    "directory": "packages/medusa-payment-stripe"
+    "url": "http://github.com/medusajs/medusa"
   },
   "files": [
     "dist"
   ],
-  "author": "Medusa",
+  "author": "test",
   "license": "MIT",
   "scripts": {
     "prepublishOnly": "cross-env NODE_ENV=production tsc --build",
@@ -50,7 +49,6 @@
     "medusa-core-utils": "^1.2.0",
     "stripe": "^11.10.0"
   },
-  "gitHead": "81a7ff73d012fda722f6e9ef0bd9ba0232d37808",
   "keywords": [
     "medusa-plugin",
     "medusa-plugin-payment"
